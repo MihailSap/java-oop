@@ -14,6 +14,11 @@ public class DiscordBot {
 
     private final String token;
 
+    /**
+     * Обработчик сообщений
+     */
+    private final MessageProcessorI messageProcessor = new MessageProcessorImpl();
+
     private GatewayDiscordClient client;
 
     public DiscordBot(String token) {
@@ -40,7 +45,8 @@ public class DiscordBot {
                     if (isUser) {
                         String chatId = eventMessage.getChannelId().asString();
                         String messageFromUser = eventMessage.getContent();
-                        // TODO обработайте сообщение от пользователя (messageFromUser)
+                        String processedMessage = messageProcessor.processMessage(messageFromUser);
+                        sendMessage(chatId, processedMessage);
                     }
                 });
         System.out.println("Discord бот запущен");

@@ -15,6 +15,11 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     private final String telegramBotName;
 
+    /**
+     * Обработчик сообщений
+     */
+    private final MessageProcessorI messageProcessor = new MessageProcessorImpl();
+
     public TelegramBot(String telegramBotName, String token) {
         super(token);
         this.telegramBotName = telegramBotName;
@@ -39,7 +44,8 @@ public class TelegramBot extends TelegramLongPollingBot {
             Message updateMessage = update.getMessage();
             Long chatId = updateMessage.getChatId();
             String messageFromUser = updateMessage.getText();
-            // TODO обработайте сообщение от пользователя (messageFromUser)
+            String processedMessage = messageProcessor.processMessage(messageFromUser);
+            sendMessage(chatId.toString(), processedMessage);
         }
     }
 
