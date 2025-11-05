@@ -4,7 +4,7 @@ package ru.urfu;
  * Реализация обработчика сообщений
  * @author MihailSap
  */
-public class MessageProcessorImpl implements MessageProcessorI {
+public class MessageProcessorImpl implements MessageProcessor {
 
     @Override
     public String processMessage(String messageFromUser) {

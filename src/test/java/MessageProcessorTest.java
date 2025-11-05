@@ -1,5 +1,5 @@
 import org.junit.jupiter.api.Test;
-import ru.urfu.MessageProcessorI;
+import ru.urfu.MessageProcessor;
 import ru.urfu.MessageProcessorImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,17 +13,15 @@ public class MessageProcessorTest {
     /**
      * Обработчик сообщений
      */
-    private final MessageProcessorI messageProcessor = new MessageProcessorImpl();
+    private final MessageProcessor messageProcessor = new MessageProcessorImpl();
 
     /**
      * Тест на обработку правильного сообщения
      */
     @Test
     void defaultMessageTest(){
-        String messageFromUser = "Привет!";
-        String processedMessage = messageProcessor.processMessage(messageFromUser);
-        String expectedMessage = "Ваше сообщение: 'Привет!'";
-        assertEquals(expectedMessage, processedMessage);
+        String processedMessage = messageProcessor.processMessage("Привет!");
+        assertEquals("Ваше сообщение: 'Привет!'", processedMessage);
     }
 
     /**
@@ -31,9 +29,7 @@ public class MessageProcessorTest {
      */
     @Test
     void emptyMessageTest(){
-        String messageFromUser = "";
-        String processedMessage = messageProcessor.processMessage(messageFromUser);
-        String expectedMessage = "Ваше сообщение: ''";
-        assertEquals(expectedMessage, processedMessage);
+        String processedMessage = messageProcessor.processMessage("");
+        assertEquals("Ваше сообщение: ''", processedMessage);
     }
 }

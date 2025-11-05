@@ -18,11 +18,12 @@ public class TelegramBot extends TelegramLongPollingBot {
     /**
      * Обработчик сообщений
      */
-    private final MessageProcessorI messageProcessor = new MessageProcessorImpl();
+    private final MessageProcessor messageProcessor;
 
-    public TelegramBot(String telegramBotName, String token) {
+    public TelegramBot(String telegramBotName, String token, MessageProcessor messageProcessor) {
         super(token);
         this.telegramBotName = telegramBotName;
+        this.messageProcessor = messageProcessor;
     }
 
     /**

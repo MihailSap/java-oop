@@ -17,12 +17,13 @@ public class DiscordBot {
     /**
      * Обработчик сообщений
      */
-    private final MessageProcessorI messageProcessor = new MessageProcessorImpl();
+    private final MessageProcessor messageProcessor;
 
     private GatewayDiscordClient client;
 
-    public DiscordBot(String token) {
+    public DiscordBot(String token, MessageProcessor messageProcessor) {
         this.token = token;
+        this.messageProcessor = messageProcessor;
     }
 
     /**
